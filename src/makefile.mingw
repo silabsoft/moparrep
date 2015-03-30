@@ -1,5 +1,5 @@
 # Copyright (c) 2009-2010 Satoshi Nakamoto
-# Copyright (c) 2012 The Paycoin developers
+# Copyright (c) 2012 The MoparRep developers
 # Distributed under the MIT/X11 software license, see the accompanying
 # file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
@@ -53,7 +53,7 @@
 #
 # - Build paycoind.exe
 #   in MinGW MSYS
-#     cd paycoin/src
+#     cd MoparRep/src
 #     make paycoind.exe -f makefile.mingw USE_UPNP=1
 #
 #

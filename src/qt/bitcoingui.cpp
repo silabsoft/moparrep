@@ -1,9 +1,9 @@
 /*
- * Qt4 paycoin GUI.
+ * Qt4 MoparRep GUI.
  *
  * W.J. van der Laan 2011-2012
  * The Bitcoin Developers 2011-2012
- * The Paycoin Developers 2011-2013
+ * The MoparRep Developers 2011-2013
  */
 #include "bitcoingui.h"
 #include "transactiontablemodel.h"
@@ -74,7 +74,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     rpcConsole(0)
 {
     resize(850, 550);
-    setWindowTitle(tr("Paycoin Wallet"));
+    setWindowTitle(tr("MoparRep Wallet"));
 #ifndef Q_WS_MAC
     setWindowIcon(QIcon(":icons/paycoin_icon"));
 #else
@@ -222,7 +222,7 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(receiveCoinsAction);
 
     sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send coins"), this);
-    sendCoinsAction->setToolTip(tr("Send coins to a Paycoin address"));
+    sendCoinsAction->setToolTip(tr("Send coins to a MoparRep address"));
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
     tabGroup->addAction(sendCoinsAction);
@@ -258,17 +258,17 @@ void BitcoinGUI::createActions()
     quitAction->setToolTip(tr("Quit application"));
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
-    aboutAction = new QAction(QIcon(":/icons/paycoin_tooltip"), tr("&About Paycoin"), this);
-    aboutAction->setToolTip(tr("Show information about Paycoin"));
+    aboutAction = new QAction(QIcon(":/icons/paycoin_tooltip"), tr("&About MoparRep"), this);
+    aboutAction->setToolTip(tr("Show information about MoparRep"));
     aboutAction->setMenuRole(QAction::AboutRole);
     aboutQtAction = new QAction(tr("About &Qt"), this);
     aboutQtAction->setToolTip(tr("Show information about Qt"));
     aboutQtAction->setMenuRole(QAction::AboutQtRole);
     optionsAction = new QAction(QIcon(":/icons/options"), tr("&Options..."), this);
-    optionsAction->setToolTip(tr("Modify configuration options for Paycoin"));
+    optionsAction->setToolTip(tr("Modify configuration options for MoparRep"));
     optionsAction->setMenuRole(QAction::PreferencesRole);
-    toggleHideAction = new QAction(QIcon(":/icons/paycoin_tooltip"), tr("Show/Hide &Paycoin"), this);
-    toggleHideAction->setToolTip(tr("Show or hide the Paycoin window"));
+    toggleHideAction = new QAction(QIcon(":/icons/paycoin_tooltip"), tr("Show/Hide &MoparRep"), this);
+    toggleHideAction->setToolTip(tr("Show or hide the MoparRep window"));
     exportAction = new QAction(QIcon(":/icons/export"), tr("&Export..."), this);
     exportAction->setToolTip(tr("Export the data in the current tab to a file"));
     encryptWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Encrypt Wallet"), this);
@@ -422,7 +422,7 @@ void BitcoinGUI::createTrayIcon()
     trayIcon = new QSystemTrayIcon(this);
     trayIconMenu = new QMenu(this);
     trayIcon->setContextMenu(trayIconMenu);
-    trayIcon->setToolTip(tr("Paycoin client"));
+    trayIcon->setToolTip(tr("MoparRep client"));
     trayIcon->setIcon(QIcon(":/icons/paycoin_tooltip"));
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
@@ -515,7 +515,7 @@ void BitcoinGUI::setNumConnections(int count)
     default: icon = ":/icons/connect_4"; break;
     }
     labelConnectionsIcon->setPixmap(QIcon(icon).pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to Paycoin network", "", count));
+    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to MoparRep network", "", count));
 }
 
 void BitcoinGUI::setNumBlocks(int count)

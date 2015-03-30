@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2015 The Peercoin developers
-// Copyright (c) 2014-2015 The Paycoin developers
+// Copyright (c) 2014-2015 The MoparRep developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef BITCOIN_MAIN_H
@@ -49,11 +49,11 @@ static const int STAKE_MIN_AGE = 60 * 60; // minimum age for coin age
 //static const int STAKE_MIN_AGE = 60; // minimum age for coin age
 static const int STAKE_MAX_AGE = 60 * 60 * 24 * 5; // stake age of full weight
 //static const int STAKE_MAX_AGE = 60 * 2; // stake age of full weight
-static const int STAKE_START_TIME = 1418470264; // Sat 13 Dec 2014 06:31:04 AM EST
-//static const int STAKE_START_TIME = 1418345400; // Thu 11 Dec 2014 05:30:00 PM EST
-static const unsigned int POW_START_TIME = 1418403600; // Fri 12 Dec 2014 12:00:00 PM EST
-//static const unsigned int POW_START_TIME = 1418345100; // Thu 11 Dec 2014 05:00:00 PM EST
-static const unsigned int POW_END_TIME = 1419181200; // Sun 21 Dec 2014 12:00:00 PM EST
+static const int STAKE_START_TIME = 1427756516; 
+//static const int STAKE_START_TIME = 1418345400;
+static const unsigned int POW_START_TIME = 1427756516;
+//static const unsigned int POW_START_TIME = 1418345100; 
+static const unsigned int POW_END_TIME = 1428706895; 
 //static const unsigned int POW_END_TIME = 1418345700; // Thu 11 Dec 2014 05:40:00 PM EST
 // MODIFIER_INTERVAL: time to elapse before new modifier is computed
 //static const unsigned int MODIFIER_INTERVAL = 6 * 60 * 60;
@@ -730,7 +730,7 @@ public:
     bool ClientConnectInputs();
     bool CheckTransaction() const;
     bool AcceptToMemoryPool(CTxDB& txdb, bool fCheckInputs=true, bool* pfMissingInputs=NULL);
-    bool GetCoinAge(CTxDB& txdb, uint64& nCoinAge) const;  // paycoin: get transaction coin age
+    bool GetCoinAge(CTxDB& txdb, uint64& nCoinAge) const;  // MoparRep: get transaction coin age
 
 protected:
     const CTxOut& GetOutputFor(const CTxIn& input, const MapPrevTx& inputs) const;
@@ -874,7 +874,7 @@ public:
     // network and disk
     std::vector<CTransaction> vtx;
 
-    // paycoin: block signature - signed by coin base txout[0]'s owner
+    // MoparRep: block signature - signed by coin base txout[0]'s owner
     std::vector<unsigned char> vchBlockSig;
 
     // memory only
@@ -943,7 +943,7 @@ public:
 
     void UpdateTime(const CBlockIndex* pindexPrev);
 
-    // paycoin: two types of block: proof-of-work or proof-of-stake
+    // MoparRep: two types of block: proof-of-work or proof-of-stake
     bool IsProofOfStake() const
     {
         return (vtx.size() > 1 && vtx[1].IsCoinStake());
@@ -959,7 +959,7 @@ public:
         return IsProofOfStake()? std::make_pair(vtx[1].vin[0].prevout, vtx[1].nTime) : std::make_pair(COutPoint(), (unsigned int)0);
     }
 
-    // paycoin: get max transaction timestamp
+    // MoparRep: get max transaction timestamp
     int64 GetMaxTransactionTime() const
     {
         int64 maxTransactionTime = 0;
@@ -1110,10 +1110,10 @@ public:
     bool AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos);
     bool CheckBlock(int64 nHeight=-1) const;
     bool AcceptBlock();
-    bool GetCoinAge(uint64& nCoinAge) const; // paycoin: calculate total coin age spent in block
+    bool GetCoinAge(uint64& nCoinAge) const; // MoparRep: calculate total coin age spent in block
     bool SignBlock(const CKeyStore& keystore);
     bool CheckBlockSignature() const;
-    unsigned int GetStakeEntropyBit() const; // paycoin: entropy bit for stake modifier if chosen by modifier
+    unsigned int GetStakeEntropyBit() const; // MoparRep: entropy bit for stake modifier if chosen by modifier
 
 private:
     bool SetBestChainInner(CTxDB& txdb, CBlockIndex *pindexNew);
@@ -1139,12 +1139,12 @@ public:
     CBlockIndex* pnext;
     unsigned int nFile;
     unsigned int nBlockPos;
-    CBigNum bnChainTrust; // paycoin: trust score of block chain
+    CBigNum bnChainTrust; // MoparRep: trust score of block chain
     int nHeight;
     int64 nMint;
     int64 nMoneySupply;
 
-    unsigned int nFlags;  // paycoin: block index flags
+    unsigned int nFlags;  // MoparRep: block index flags
     enum  
     {
         BLOCK_PROOF_OF_STAKE = (1 << 0), // is proof-of-stake block

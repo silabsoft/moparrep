@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2015 The Peercoin developers
-// Copyright (c) 2014-2015 The Paycoin developers
+// Copyright (c) 2014-2015 The MoparRep developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -85,7 +85,7 @@ namespace Checkpoints
         return NULL;
     }
 
-    // paycoin: synchronized checkpoint (centrally broadcasted)
+    // MoparRep: synchronized checkpoint (centrally broadcasted)
     uint256 hashSyncCheckpoint = 0;
     uint256 hashPendingCheckpoint = 0;
     CSyncCheckpoint checkpointMessage;
@@ -93,7 +93,7 @@ namespace Checkpoints
     uint256 hashInvalidCheckpoint = 0;
     CCriticalSection cs_hashSyncCheckpoint;
 
-    // paycoin: get last synchronized checkpoint
+    // MoparRep: get last synchronized checkpoint
     CBlockIndex* GetLastSyncCheckpoint()
     {
         LOCK(cs_hashSyncCheckpoint);
@@ -104,7 +104,7 @@ namespace Checkpoints
         return NULL;
     }
 
-    // paycoin: only descendant of current sync-checkpoint is allowed
+    // MoparRep: only descendant of current sync-checkpoint is allowed
     bool ValidateSyncCheckpoint(uint256 hashCheckpoint)
     {
         if (!mapBlockIndex.count(hashSyncCheckpoint))
@@ -263,7 +263,7 @@ namespace Checkpoints
         return false;
     }
 
-    // paycoin: reset synchronized checkpoint to last hardened checkpoint
+    // MoparRep: reset synchronized checkpoint to last hardened checkpoint
     bool ResetSyncCheckpoint()
     {
         LOCK(cs_hashSyncCheckpoint);
@@ -375,12 +375,12 @@ namespace Checkpoints
     }
 }
 
-// paycoin: sync-checkpoint master key
+// MoparRep: sync-checkpoint master key
 const std::string CSyncCheckpoint::strMasterPubKey = "04c82026c6765a9468e945385886c5722aa4db3fda47bd4d22d7ce451190f7d632dbefc0842c7fc0417f83e7e4c8d2724d83d64614a0ebcdffe062810734367b2e";
 
 std::string CSyncCheckpoint::strMasterPrivKey = "";
 
-// paycoin: verify signature of sync-checkpoint message
+// MoparRep: verify signature of sync-checkpoint message
 bool CSyncCheckpoint::CheckSignature()
 {
     CKey key;
@@ -395,7 +395,7 @@ bool CSyncCheckpoint::CheckSignature()
     return true;
 }
 
-// paycoin: process synchronized checkpoint
+// MoparRep: process synchronized checkpoint
 bool CSyncCheckpoint::ProcessSyncCheckpoint(CNode* pfrom)
 {
     if (!CheckSignature())

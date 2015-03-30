@@ -2567,7 +2567,7 @@ bool LoadBlockIndex(bool fAllowNew)
         block.nVersion = 1;
         block.nTime    = 1417219210;
         block.nBits    = bnProofOfWorkLimit.GetCompact();
-        block.nNonce   = 716560;
+        block.nNonce   = 0;
 
         if (fTestNet)
         {
@@ -2579,7 +2579,7 @@ bool LoadBlockIndex(bool fAllowNew)
         printf("%s\n", block.GetHash().ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0x1552f748afb7ff4e04776652c5a17d4073e60b7004e9bca639a99edb82aeb1a0"));
+        assert(block.hashMerkleRoot == uint256("0x0"));
         block.print();
         assert(block.GetHash() == hashGenesisBlock);
         assert(block.CheckBlock());
